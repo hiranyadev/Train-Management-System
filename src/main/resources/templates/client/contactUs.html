@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/contactUs.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Contact Us</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/client/}" > Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+				<li><a th:href="@{/client/}">Home</a></li>
+				<li><a th:href="@{/client/liveLocation}">View Trains Track</a></li>
+				<li><a th:href="@{/client/viewbookinghistory}">View Booking History</a></li>
+				<li><a th:href="@{/client/information}">Information</a></li>
+				<li class="active"><a th:href="@{/client/contactUs}">Contact Us</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		</div>
+	</nav>
+	
+		<div class="container">
+		  <div style="text-align:center">
+		    <h2>Contact Us</h2>
+		    <p>Swing by for Train ticket booking, or leave us a message:</p>
+		  </div>
+		  <div class="row">
+		    <div class="column">
+		    <div class="google-map">
+			  <iframe src="https://maps.google.com/maps?q=srilanka&t=&z=10&ie=UTF8&iwloc=&output=embed" 
+			  		width="550" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		    </div>
+		    <div class="column">
+		      <form th:action="@{/client/send}" th:object = "${contact}" method="post">
+		        <label for="fname">Full Name</label>
+		        <input type="text" id="fname" name="fullname" th:field = "*{name}" placeholder="Your Full Name..">
+		       	<label for="fname">Phone Number </label>
+		        <input type="text" id="phoneNum" name="phoneNum" th:field = "*{phone}" placeholder="Your Phone Number..">
+		        <label for="fname">Email</label>
+		        <input type="text" id="email" name="email" th:field = "*{email}" onchange="validateEmail()" placeholder="Your Email..">
+		        <p id="error-message" style="color: red; display: none;">Please enter a valid email address.</p>
+		        <label for="fname">Address</label>
+		        <input type="text" id="address" name="address" th:field = "*{address}" placeholder="Your Address..">
+		        <label for="fname">Subject</label>
+		        <input type="text" id="subject" name="subject" th:field = "*{subject}" placeholder="Subject..">
+		       
+		        <label for="subject">Content</label>
+		        <textarea id="content" name="content" th:field = "*{content}" placeholder="Write something.." style="height:170px"></textarea>
+		        <input type="submit" value="Submit" onclick="clear()">
+		      </form>
+		    </div>
+		  </div>
+		</div>
+	<script defer
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQliB46LYCh_2d9UDCgZ4g-IFguv0H_h8 &callback=initMap">
+	</script>
+		<script>
+			function clear() {
+				debugger;
+				console.log("test");
+			  document.getElementById("fullname").innerHTML = "";
+			  document.getElementById("phoneNum").innerHTML = "";
+			  document.getElementById("email").innerHTML = "";
+			  document.getElementById("address").innerHTML = "";
+			  document.getElementById("subject").innerHTML = "";
+			  document.getElementById("content").innerHTML = "";
+			  
+			  document.getElementById("fullname").value = "";
+			  document.getElementById("phoneNum").value = "";
+			  document.getElementById("email").value = "";
+			  document.getElementById("address").value = "";
+			  document.getElementById("subject").value = "";
+			  document.getElementById("content").value = "";
+			  
+			  /* document.getElementById("fullname").th:field = "";
+			  document.getElementById("phoneNum").th:field = "";
+			  document.getElementById("email").th:field = "";
+			  document.getElementById("address").th:field = "";
+			  document.getElementById("subject").th:field = "";
+			  document.getElementById("content").th:field = ""; */
+			}
+		</script>
+		<script type="text/javascript">
+			function validateEmail() {
+				  const emailInput = document.getElementById("email");
+				  const errorMessage = document.getElementById("error-message");
+				  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	
+				  if (!emailPattern.test(emailInput.value)) {
+				    errorMessage.style.display = "block";
+				  } else {
+				    errorMessage.style.display = "none";
+				    // Here you can submit the form or perform any other actions
+				  }
+				}
+		</script>
+</div>
+</body>
+</html>

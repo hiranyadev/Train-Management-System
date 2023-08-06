@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../css/jquery.fancybox.min.css">
+	<link rel="stylesheet" href="../fonts/icomoon/style.css">
+	<link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+	<link rel="stylesheet" href="../css/daterangepicker.css">
+	<link rel="stylesheet" href="../css/aos.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Search Trains</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/admin/}"> Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav navbar-right">
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+		    </ul>
+		</div>
+	</nav>
+
+	<div class="container">
+	<div class="untree_co-section">
+		<div class="container">
+			<div class="row justify-content-center text-center mb-5">
+				<div class="col-lg-6">
+					<h2 class="section-title text-center mb-3"> WELCOME TO EXPO TRAIN ADMINSTRATION</h2>
+					<p>"Your Journey, Simplified. Streamline and Secure Your Train Tickets Online!"</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageTrains}" class="d-block mb-3"><img src="../images/hero-slider-1.jpg" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageTrains}">Manage Trains</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageSchedules}" class="d-block mb-3"><img src="../images/schedule.jpg" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageSchedules}"  >Manage Train Schedules</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageStations}" class="d-block mb-3"><img src="../images/station.png" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageStations}">Manage Stations</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageBooking}" class="d-block mb-3"><img src="../images/hero-slider-4.jpg" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageBooking}">Manage Bookings</a>
+					</div>
+				</div>
+				</div>
+				<h1></h1>
+				<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManagePassenger}" class="d-block mb-3"><img src="../images/client.png" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManagePassenger}">Manage Clients</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminReports}" class="d-block mb-3"><img src="../images/report.png" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminReports}">Manage Reports</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageClasses}" class="d-block mb-3"><img src="../images/hero-slider-3.jpg" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageClasses}">Manage Train Classes</a>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a th:href="@{/admin/adminManageCabins}" class="d-block mb-3"><img src="../images/cabin.png" alt="Image" class="img-fluid"></a>
+						<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageCabins}"> Manage Train Cabins </a>
+					</div>
+				</div>
+				</div>
+				<h1></h1>
+				<div class="row">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="media-1">
+							<a th:href="@{/admin/adminManageJourneyPrices}" class="d-block mb-3"><img src="../images/price.png" alt="Image" class="img-fluid"></a>
+							<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageJourneyPrices}"> Manage Train Prices </a>
+						</div>
+					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+						<div class="media-1">
+							<a th:href="@{/admin/adminManageLocations}" class="d-block mb-3"><img src="../images/location.png" alt="Image" class="img-fluid"></a>
+							<a class="btn btn-primary" type="button" th:href="@{/admin/adminManageLocations}"> Manage Tracking Locations </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

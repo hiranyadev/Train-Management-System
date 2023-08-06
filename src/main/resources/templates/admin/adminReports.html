@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		.panel {
+			padding: 1em 1em;
+			margin-bottom: 0px;
+			background: none;
+			box-shadow: none;
+		}
+		
+		.chit-chat-layer1 {
+			margin: 2em 0em;
+		}
+		
+		.chit-chat-heading {
+			font-size: 1.5em;
+			font-weight: 900;
+			color: #FBFCFC;
+			text-transform: uppercase;
+			text-align: center;
+			font-family: 'Carrois Gothic', sans-serif;
+		}
+		
+		.work-progres {
+			box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.15);
+			padding: 1.34em 1em;
+			background: #2E86C1;
+			width: 100%;
+			align: center;
+		}
+		
+		.form-group{
+			width: 100%;
+			align: center;
+		}
+		
+		.whiteTextOverride
+			{
+			 color: white !important;
+			}
+	</style>
+<title>Search Trains</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/admin/}"> Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		    	<li><a th:href="@{/admin/}">Home</a></li>
+				<li><a th:href="@{/admin/adminManageTrains}">Manage Trains</a></li>
+				<li><a th:href="@{/admin/adminManageSchedules}">Manage Train Schedules</a></li>
+				<li><a th:href="@{/admin/adminManageStations}">Manage Stations</a></li>
+				<li><a th:href="@{/admin/adminManageBooking}">Manage Bookings</a></li>
+				<li><a th:href="@{/admin/adminManagePassenger}">Manage Clients</a></li>
+				<li class="active"><a th:href="@{/admin/adminReports}">Manage Reports</a></li>
+				<li><a th:href="@{/admin/adminManageClasses}">Manage Train Classes</a></li>				
+				<li><a th:href="@{/admin/adminManageCabins}"> Manage Train Cabins </a></li>
+				<li><a th:href="@{/admin/adminManageJourneyPrices}"> Manage Train Prices </a></li>
+				<li><a th:href="@{/admin/adminManageLocations}"> Manage Tracking Locations </a></li>
+				<li><a th:href="@{/admin/adminLocation}"> Manage Tracking Locations </a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		</div>
+	</nav>
+
+<div class="container">
+			<div class="chit-chat-layer1">
+				<div class="col-md-12" style="width: 100%; height: 480px;">
+					<div class="work-progres">
+						<div class="chit-chat-heading">Report Generator</div>
+						<br>
+						<div class="form-group">
+							<h5 class="whiteTextOverride"> All Train Report  </h5>
+							<a type="button" class="form-control" th:href="@{/admin/getAllTrainReport}"
+								style="text-align: center;"> Generate </a>
+						</div>
+						<div class="form-group">
+							<h5 class="whiteTextOverride"> Passenger Details Report  </h5>
+							<a type="button" class="form-control" th:href="@{/admin/getPassengerReport}"
+								style="text-align: center;"> Generate </a>
+						</div>
+						<h5 class="whiteTextOverride"> Schedule Details Report  </h5>
+						<div class="form-group">
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">From Date:</label>
+								<input type="date" class="form-control" name="fromDate1" id="fromDate1" onchange="getReport(1);">
+							</div>
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">To Date:</label>
+								<input type="date" class="form-control" name="toDate1" id="toDate1" onchange="getReport(1);">
+							</div>
+							<a type="button" id="genSchdReport" class="form-control" 
+								style="text-align: center;" onclick="validate(1);"> Generate </a>
+						</div>
+						<br>
+						<h5 class="whiteTextOverride"> Income Report  </h5>
+						<div class="form-group">
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">From Date:</label>
+								<input type="date" class="form-control" name="fromDate2" id="fromDate2" onchange="getReport(2);">
+							</div>
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">To Date:</label>
+								<input type="date" class="form-control" name="toDate2" id="toDate2" onchange="getReport(2);">
+							</div>
+							<a type="button" id="genIncReport" class="form-control" 
+								style="text-align: center;" onclick="validate(2);"> Generate </a>
+						</div>
+						<br>
+						<h5 class="whiteTextOverride"> Ticket Sales Report  </h5>
+						<div class="form-group">
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">From Date:</label>
+								<input type="date" class="form-control" name="fromDate3" id="fromDate3" onchange="getReport(3);">
+							</div>
+							<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+								<label for="time">To Date:</label>
+								<input type="date" class="form-control" name="toDate3" id="toDate3" onchange="getReport(3);">
+							</div>
+							<a type="button" id="genTickReport" class="form-control" 
+								style="text-align: center;" onclick="validate(3);"> Generate </a>
+							<br><br>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+<script>
+
+	function getReport(reportId){
+		var fd = "fromDate"+reportId;
+		var td = "toDate"+reportId;
+		let fromDate = document.getElementById(fd).value;
+		let toDate = document.getElementById(td).value;
+		
+		if(fromDate!="" && toDate!=""){
+			if(reportId == 1)
+				document.getElementById("genSchdReport").href = "/admin/getScheduleReport/"+fromDate+"/"+toDate;
+			else if (reportId == 2)
+				document.getElementById("genIncReport").href = "/admin/getIncomeReport/"+fromDate+"/"+toDate; 
+			else
+				document.getElementById("genTickReport").href = "/admin/getSaleTicketReport/"+fromDate+"/"+toDate;
+		}
+	}
+	
+	function validate(reportId){
+		var fd = "fromDate"+reportId;
+		var td = "toDate"+reportId;
+		let fromDate = document.getElementById(fd).value;
+		let toDate = document.getElementById(td).value;
+		
+		if(fromDate!="" && toDate!=""){
+			confirm("Generate the Report");
+		}else{
+			window.alert("Select Date Range For the Reports");
+			return false;
+		}
+	}
+	
+ </script>
+</body>
+</html>

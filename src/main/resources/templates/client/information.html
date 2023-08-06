@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Search Trains</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/client/}" > Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+				<li><a th:href="@{/client/}">Home</a></li>
+				<li><a th:href="@{/client/liveLocation}">View Trains Track</a></li>
+				<li><a th:href="@{/client/viewbookinghistory}">View Booking History</a></li>
+				<li class="active"><a th:href="@{/client/information}">Information</a></li>
+				<li><a th:href="@{/client/contactUs}">Contact Us</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div class = "row">
+			<div class ="col-lg-3 col-md-3 col-sm-3 container justify-content-center card"> </div>
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h2 class = "text-center"> My Details </h2>
+				<div class = "card-body">
+					<form th:action="@{/client/updateClient}" method="post" th:object = "${client}">
+						<div class ="form-group">
+							<label> Full Name </label>
+							<input th:field="*{firstName}" type="text" name="fristName"  class = "form-control" placeholder="Full Name"  />
+							<label> NIC Number </label>
+							<input th:field="*{nic}" type="text" name="nic"  class = "form-control" placeholder="NIC Number"  />
+							<label> Address </label>
+							<input th:field="*{address}" type="text" name="address"  class = "form-control" placeholder="Address"  />
+							<label> Telephone NO </label>
+							<input th:field="*{contactNumber}" type="text" name="contactNumber"  class = "form-control" placeholder="Telephone NO"  />
+							<label> Email </label>
+							<input th:field="*{email}" type="text" name="email"  class = "form-control" placeholder="Email"  />
+							
+							<input th:field="*{lastName}" type="hidden" name="lastName" th:value = "${client.lastName}" class = "form-control" placeholder="Email"  />
+							<input th:field="*{clientId}" type="hidden" name="clientId" th:value = "${client.clientId}" class = "form-control" placeholder="Email"  />
+							<input th:field="*{username}" type="hidden" name="username" th:value = "${client.username}" class = "form-control" placeholder="Email"  />
+							<input th:field="*{password}" type="hidden" name="password" th:value = "${client.password}" class = "form-control" placeholder="Email"  />
+							<input th:field="*{registerDate}" type="hidden" name="registerDate" th:value = "${client.registerDate}" class = "form-control" placeholder="Email"  />
+							
+							
+						</div>						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary btn-block">
+								Update
+							</button>
+						</div>
+						<br>
+					</form>
+				
+				</div>
+			</div>
+			<div class ="col-lg-3 col-md-3 col-sm-3 container justify-content-center card"> </div>
+		</div>
+		<br><br>
+	<h1 class = "text-center"> My Booking Details </h1>
+		<div class="card">
+			<div class="card-body">
+			<table class = "table table-striped table-bordered">
+				<thead class = "table-dark">
+					<tr>
+						<!-- <th> Client First Name </th> -->
+						<th> Full Name </th>
+						<th> NIC </th>
+						<th> Departure Date </th>
+						<th> Number of Seats </th>
+						<th> Price </th>
+						<th> Departure Station </th>
+						<th> Arrival Station </th>
+						<th> Ticket Booking Date </th>
+						
+					</tr>
+				</thead>
+				
+				<tbody id="tableBody">
+						<tr th:each = "bookingDetail : ${bookingDetailsList}">
+						<td th:text = "${bookingDetail.fullName}"></td>
+						<td th:text = "${bookingDetail.nic}"></td>
+						<td th:text = "${bookingDetail.depatureDate}"></td>
+						<td th:text = "${bookingDetail.numOfSeats}"></td>
+						<td th:text = "${bookingDetail.price}"></td>
+						<td th:text = "${bookingDetail.departurStation}"></td>
+						<td th:text = "${bookingDetail.arrivalStation}"></td>
+						<td th:text = "${bookingDetail.bookingDate}"></td>
+					</tr>
+				</tbody>
+			
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

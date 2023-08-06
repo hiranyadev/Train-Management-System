@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Search Trains</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/admin/}"> Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+				<li><a th:href="@{/admin/}">Home</a></li>
+				<li><a th:href="@{/admin/adminManageTrains}">Manage Trains</a></li>
+				<li><a th:href="@{/admin/adminManageSchedules}">Manage Train Schedules</a></li>
+				<li><a th:href="@{/admin/adminManageStations}">Manage Stations</a></li>
+				<li><a th:href="@{/admin/adminManageBooking}">Manage Bookings</a></li>
+				<li><a th:href="@{/admin/adminManagePassenger}">Manage Clients</a></li>
+				<li><a th:href="@{/admin/adminReports}">Manage Reports</a></li>
+				<li><a th:href="@{/admin/adminManageClasses}">Manage Train Classes</a></li>				
+				<li><a th:href="@{/admin/adminManageCabins}"> Manage Train Cabins </a></li>
+				<li><a th:href="@{/admin/adminManageJourneyPrices}"> Manage Train Prices </a></li>
+				<li class="active"><a th:href="@{/admin/adminManageLocations}"> Manage Tracking Locations </a></li>
+				<li><a th:href="@{/admin/adminLocation}"> Manage Tracking Locations </a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		</div>
+	</nav>
+
+	<div class="container">
+	<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Add New Location to the System </h1>
+				<div class = "card-body">
+					<form th:action="@{/admin/addlocation}" th:object = "${newlocation}" method="POST">
+						<div class ="form-group">
+							<label> New Class </label>
+							<input type = "text" name = "locationName" th:field = "*{locationName}" class = "form-control" placeholder="Enter Location Name"  />
+							<input type = "text" name = "latitude" th:field = "*{latitude}" class = "form-control" placeholder="latitude"  />
+							<input type = "text" name = "longitude" th:field = "*{longitude}" class = "form-control" placeholder="longitude"  />							
+						</div>						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary btn-block">
+								Add New Location
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	<h1> </h1>
+	<div class="card">
+		<div class="card-body">
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th> Location Name </th>
+					<th> Latitude </th>
+					<th> Longitude </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "locations: ${locationsList}">
+					<td th:text = "${locations.locationName}"></td>
+					<td th:text = "${locations.latitude}"></td>
+					<td th:text = "${locations.longitude}"></td>
+				</tr>
+			</tbody>
+		
+		</table>
+		</div>
+	</div>	
+	</div>
+</div>
+</body>
+</html>

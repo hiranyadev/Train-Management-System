@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" >
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Search Trains</title>
+</head>
+<body>
+<div>	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<a class="navbar-brand " th:href="@{/client/}" > Train Booking <span class="text-primary">.</span></a>
+		    </div>
+		    <ul class="nav navbar-nav">
+				<li><a th:href="@{/client/}">Home</a></li>
+				<li><a th:href="@{/client/liveLocation}">View Trains Track</a></li>
+				<li class="active"><a th:href="@{/client/viewbookinghistory}">View Booking History</a></li>
+				<li><a th:href="@{/client/information}">Information</a></li>
+				<li><a th:href="@{/client/contactUs}">Contact Us</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> LogOut </a></li>
+		    </ul>
+		</div>
+	</nav>
+
+<div class="container">
+		<div class="card-section" >
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Ticket No</th>
+							<th>Booked Date</th>
+							<th>Departure</th>
+							<th>Destination</th>
+							<th>Total Ticket Price</th>
+							<th>Ticket Status</th>
+							<th>Payment Status</th>
+							<th>          </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bookingHistory : ${bookingHistoryList}">
+							<th th:text="${bookingHistory.ticketNo}"></th>
+							<th th:text="${bookingHistory.bookingDate}"></th>
+							<th th:text="${bookingHistory.depStation}"></th>
+							<th th:text="${bookingHistory.desStation}"></th>
+							<th th:text="${bookingHistory.totalPrice}"></th>
+							<th th:text="${bookingHistory.ticketStatus} "></th>
+							<th th:text="${bookingHistory.payStatus} "></th>
+							<th><div class="card_body mt-1">
+								<a class="button" th:id="'paybtn'+${bookingHistory.ticketId}+''" th:onclick="'enablepayButton(\''+${bookingHistory.ticketId}+'\');'" th:value="${bookingHistory.payStatus}" th:href="@{/client/payment/{ticketid}(ticketid=${bookingHistory.ticketId})}">  
+    								<button class="btn btn-primary" >Pay</button>
+    							</a>
+    							<a id="cancelbtn"  class="button" th:href="@{/client/ticketcancel/{ticketid}(ticketid=${bookingHistory.ticketId})}">  
+    								<button class="btn btn-primary" >Cancel</button>
+    							</a>
+    							<a id="printbtn"  class="button" th:href="@{/client/generate/document/{ticketid}(ticketid=${bookingHistory.ticketId})}">  
+    								<button class="btn btn-primary" >Print Receipt</button>
+    							</a>
+								</div>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+		</div>	
+	</div>
+</div>
+<script type="text/javascript">
+
+	function enablepayButton(id){
+		var btn = "paybtn"+id;
+		var payStatus = document.getElementById(btn).value;
+		if(payStatus=='Payed' || payStatus=="Payed"){
+			window.alert("Already Payed for this ticket");
+		}else{
+			confirm("Confirm to Pay")
+		}
+	}
+	
+</script>
+</body>
+</html>
